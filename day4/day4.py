@@ -23,4 +23,19 @@ for i in range(h):
             if result == "XMAS":
                 ans += 1
 
-print(ans)
+print(f"Answer to part 1: {ans}")
+ans = 0
+
+for i in range(1, h - 1):
+    for j in range(1, w - 1):
+        if grid[i][j] == 'A':
+            for dx, dy in adj8:
+                if dx == 0 or dy == 0:
+                    continue
+                if grid[i + dx][j + dy] == 'M' and grid[i - dx][j - dy] == 'S' \
+                        and ((grid[i - dy][j + dx] == "M" and grid[i + dy][j - dx] == "S") \
+                        or (grid[i - dy][j + dx] == "S" and grid[i + dy][j - dx] == "M")):
+                    ans += 1
+                    break
+
+print(f"Answer to part 2: {ans}")
